@@ -46,11 +46,16 @@ pnpm run build
 
 ## Deployment
 
-This app is configured for deployment to Cloudflare Workers. See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+This app works seamlessly with Vercel. Simply:
 
-Quick deploy:
+1. Push your code to GitHub
+2. Import the repository in [Vercel](https://vercel.com)
+3. Vercel will auto-detect TanStack Start and deploy
+
+Alternatively, use the Vercel CLI:
 ```bash
-pnpm deploy
+npm i -g vercel
+vercel
 ```
 
 ## Project Structure

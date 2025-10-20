@@ -46,16 +46,16 @@ pnpm run build
 
 ## Deployment
 
-This app works seamlessly with Vercel. Simply:
+This app is configured for deployment to Netlify. Simply:
 
 1. Push your code to GitHub
-2. Import the repository in [Vercel](https://vercel.com)
-3. Vercel will auto-detect TanStack Start and deploy
+2. Import the repository in [Netlify](https://app.netlify.com)
+3. Netlify will automatically build and deploy using the `netlify.toml` configuration
 
-Alternatively, use the Vercel CLI:
+Alternatively, use the Netlify CLI:
 ```bash
-npm i -g vercel
-vercel
+npm i -g netlify-cli
+ntl deploy --prod
 ```
 
 ## Project Structure

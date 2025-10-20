@@ -11,6 +11,5 @@ count.txt
 .vinxi
 todos.json
 
-# Wrangler
-.wrangler
-.dev.vars
+# Netlify
+.netlify

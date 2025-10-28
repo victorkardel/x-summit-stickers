@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { Album, FileX, Copy } from 'lucide-react'
 import { STICKERS, EVENT_NAME } from '../constants/stickers'
 import { StickerCard } from '../components/StickerCard'
@@ -12,6 +12,7 @@ export const Route = createFileRoute('/')({
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabType>('all')
+  const mainContentRef = useRef<HTMLElement>(null)
 
   // Use Legend State hook
   const {
@@ -29,8 +30,18 @@ function App() {
     return getFilteredStickers(activeTab)
   }, [activeTab, getFilteredStickers])
 
+  // Scroll to top smoothly when tab changes
+  useEffect(() => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
+  }, [activeTab])
+
   return (
-    <div className="h-screen flex flex-col bg-black">
+    <div className="h-screen flex flex-col bg-black overflow-x-hidden">
       {/* Sticky Header */}
       <header className="sticky top-0 z-10 bg-black border-b border-gray-800 shadow-lg">
         <div className="px-4 py-4">
@@ -59,7 +70,7 @@ function App() {
       </header>
 
       {/* Scrollable Content */}
-      <main className="flex-1 overflow-y-auto pb-20 relative">
+      <main ref={mainContentRef} className="flex-1 overflow-y-auto pb-20 relative">
         {filteredStickers.length === 0 ? (
           <div className="h-full flex items-center justify-center bg-black">
             <div className="flex flex-col items-center justify-center text-gray-400 relative z-10">
